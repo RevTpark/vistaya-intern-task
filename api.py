@@ -110,16 +110,20 @@ class SlotCancelAPI(Resource):
         time = data["slot"]
         name = data["name"]
         slot_info = SlotData.query.filter_by(slot_time=time).first()
-        if slot_info.slot_one == name:
-            result_status = f"canceled booking for {name} in slot {time}"
-            result_code = 200
-            slot_info.slot_one = None
-            db.session.commit()
-        elif slot_info.slot_two == name:
-            result_status = f"canceled booking for {name} in slot {time}"
-            result_code = 200
-            slot_info.slot_two = None
-            db.session.commit()
+        if slot_info:
+            if slot_info.slot_one == name:
+                result_status = f"canceled booking for {name} in slot {time}"
+                result_code = 200
+                slot_info.slot_one = None
+                db.session.commit()
+            elif slot_info.slot_two == name:
+                result_status = f"canceled booking for {name} in slot {time}"
+                result_code = 200
+                slot_info.slot_two = None
+                db.session.commit()
+            else:
+                result_status = f"no booking for the name {name} in slot {time}"
+                result_code = 404
         else:
             result_status = f"no booking for the name {name} in slot {time}"
             result_code = 404
@@ -143,7 +147,6 @@ class SquareCheck(Resource):
             session["points"] = []
 
         session["points"] += [(x, y)]
-        print(session["points"])
         points = session["points"]
         grid = {p: 1 for p in points}
         while len(points) >= 4:

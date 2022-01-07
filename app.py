@@ -1,13 +1,14 @@
 from flask import Flask, request, session
 from flask_restful import Api, Resource, reqparse
 from flask_sqlalchemy import SQLAlchemy
+from decouple import config
 
 # import Route Classes
 from api import InputValidatorAPI, SlotBookingAPI, SlotCancelAPI, SquareCheck
 
 # Initialize app and database
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///temporaryDatabase.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = config("DATABASE_URL")
 db = SQLAlchemy(app)
 
 # Initialize RESTful API and paths
