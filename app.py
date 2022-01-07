@@ -8,7 +8,7 @@ from api import InputValidatorAPI, SlotBookingAPI, SlotCancelAPI, SquareCheck
 
 # Initialize app and database
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = config("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = config("SQLALCHEMY_DATABASE_URI")
 db = SQLAlchemy(app)
 
 # Initialize RESTful API and paths
