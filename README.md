@@ -5,7 +5,7 @@
 **Host**: Heroku
 
 ## Why Flask over Django?
-I know Django and Flask quite well. But since what this task needed wasn't so heavy on server side. I knew Flask could do the job just right and more efficiently rather than having to handle unnecessary files in Django.
+I know Django and Flask quite well. But since what this task needed wasn't so heavy on server side. I knew Flask could do the job just right and more efficiently rather than having to handle unnecessary files in Django for such a simple task.
 
 # API schema
 
